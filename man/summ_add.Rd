@@ -6,9 +6,6 @@
 \usage{
 summ_add(df, var)
 }
-\arguments{
-\item{var}{}
-}
 \description{
 \code{sum_add} takes a dataframe and a column name, and calculates mean, median, n,  sd, and se
 }

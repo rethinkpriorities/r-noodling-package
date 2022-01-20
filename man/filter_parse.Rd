@@ -2,23 +2,10 @@
 % Please edit documentation in R/multi_function_wip.R
 \name{filter_parse}
 \alias{filter_parse}
-\title{Explanation in one sentence}
+\title{Function to filter by given string:}
 \usage{
 filter_parse(df, x)
 }
-\arguments{
-\item{x}{what inputs to function}
-}
 \description{
-\code{functionname} does blah
-}
-\details{
-Pasting functions in here to turn into package cormat later
-}
-\examples{
-# Here is an example
-x <- sample(x = c(0, 1),  size = 10, replace = TRUE)
-se_bin(x)
-
-nothing(mtcars)
+Function to filter by given string:
 }
