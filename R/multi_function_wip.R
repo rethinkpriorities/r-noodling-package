@@ -14,37 +14,8 @@ yfind <- function(df = eas_all, text, n=3, y=year) {
 
 #' Grouped summaries, listing of unique groups
 #'
-#' \code{grp_n} counts nonmissing observations of each column by group
+# note grp_n and grp_unique were deleted because its in rething package \code{grp_n} counts nonmissing observations of each column by group
 #'
-#' @examples
-#'  grp_n(mtcars, cyl)
-#' @export
-
-grp_n <- function (df, groupvar) {
-  df %>%
-    group_by({{groupvar}}) %>%
-    summarise(across(.cols = everything(),
-                     .fns = list(n = ~ sum(!is.na(.x)))
-    )
-    )
-}
-
-#' \code{grp_uniq} counts nonmissing *distinct* observations of each column by group
-#'
-#' @examples
-#'  grp_n(mtcars, cyl)
-
-
-#' @export
-grp_uniq <- function (df, groupvar) {
-  df %>%
-    group_by({{groupvar}}) %>%
-    summarise(across(.cols = everything(),
-                     .fns = list(uniq = ~ n_distinct(.x))
-    )
-    )
-}
-
 #' Function to filter by given string:
 #' @export
 filter_parse <- function(df, x) {
@@ -102,10 +73,28 @@ tabsum <- function(df = ADSX, yvar = donation, xvar = Stage, treatvar = Treatmen
   treatvar <- enquo(treatvar)
   df %>% ungroup() %>% # mutate(xvar = as.factor(!!xvar)) %>%
   dplyr::group_by(!!xvar, !!treatvar) %>% # drop_na(!!yvar, !!treatvar) %>%
-  dplyr::select(!!yvar, !!treatvar, !!xvar) %>% dplyr::summarise(meanyvar = mean(!!yvar,
+  dplyr::select(!!yvar, !!treatvar, !!xvar) %>%
+  dplyr::summarise(meanyvar = mean(!!yvar,
     na.rm = TRUE))
 }
 
+#'  \code{tabsums} Quick 'group by and summarize'
+
+#' @examples
+#' tabsums(mtcars, mpg, cyl)
+
+#' @export
+
+tabsums <- function(df, yvar, xvar){
+ df %>% ungroup() %>%
+  dplyr::group_by({{xvar}}) %>%
+  dplyr::select({{yvar}}, {{xvar}}) %>%
+  dplyr::summarise(
+                   nonmissing = sum(!is.na({{yvar}})),
+                   mean = mean({{yvar}}, na.rm = TRUE),
+                   sd = sd({{yvar}}, na.rm = TRUE)
+                   )
+ }
 
 
 #'  \code{group_by_sum} Quick 'group by' function to look at NA or 0 values for each year
