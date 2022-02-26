@@ -2,7 +2,7 @@
 % Please edit documentation in R/multi_function_wip.R
 \name{filter_parse}
 \alias{filter_parse}
-\title{Function to filter by given string:}
+\title{Grouped summaries, listing of unique groups}
 \usage{
 filter_parse(df, x)
 }
