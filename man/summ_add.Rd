@@ -7,7 +7,7 @@
 summ_add(df, var)
 }
 \description{
-\code{sum_add} takes a dataframe and a column name, and calculates mean, median, n,  sd, and se
+\code{sum_add} takes a dataframe and a column name, and calculates mean, n,  sd, and se #'
 }
 \examples{
 # Here is an example

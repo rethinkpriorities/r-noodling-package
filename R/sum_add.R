@@ -1,7 +1,6 @@
 #' Calculate mean, n, sd, and se
 #'
-#' \code{sum_add} takes a dataframe and a column name, and calculates mean, median, n,  sd, and se
-#'
+#' \code{sum_add} takes a dataframe and a column name, and calculates mean, n,  sd, and se #'
 #' @examples
 #' # Here is an example
 #' x <- sample(x = c(0, 1),  size = 10, replace = TRUE)
@@ -12,9 +11,11 @@
 summ_add <- function(df, var) {
     df %>%
     mutate(
-    mean = mean(as.numeric( {{ var }} )),
     n = n(),
-    sd = sd(as.numeric({{cacr}})),
-    se = sqrt((m*(1-m))/n)
+    mean = mean(as.numeric( {{ var }} )),
+    sd = sd(as.numeric({{var}}), na,rm=TRUE),
+    se = sqrt(var(x) / length(x))
     )
 }
+
+
